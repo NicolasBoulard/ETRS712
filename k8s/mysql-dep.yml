@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: wikimedia
+    role: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikimedia
+      role: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wikimedia
+        role: db
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0.11
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: password
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "1"
+          requests:
+            memory: "400Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - name: mysql-data
+            mountPath: "/var/lib/mysql/"
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-wiki-claim

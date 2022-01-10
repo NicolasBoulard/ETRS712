@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiki
+  labels:
+    app: wikimedia
+    role: front
+spec:
+  selector:
+    matchLabels:
+      app: wikimedia
+      role: front
+  template:
+    metadata:
+      labels:
+        app: wikimedia
+        role: front
+    spec:
+      containers:
+      - name: wiki
+        image: mediawiki:latest
+        ports:
+          - containerPort: 80
+            name: http
+        resources:
+          limits:
+            memory: "350Mi"
+            cpu: "500m"
+          requests:
+            memory: "200Mi"
+            cpu: "0.3"
+

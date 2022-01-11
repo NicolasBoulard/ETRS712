@@ -40,7 +40,15 @@ spec:
         volumeMounts:
           - name: mysql-data
             mountPath: "/var/lib/mysql/"
+          - name: mysql-initdb
+            mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
             claimName: mysql-wiki-claim
+        - name: mysql-initdb
+          hostPath:
+            # chemin du dossier sur l'hôte
+            path: C:\Users\Nicolas\Documents\k8s\ETRS712\db
+            # ce champ est optionnel
+            type: Directory

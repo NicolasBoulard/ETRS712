@@ -1,0 +1,1 @@
+kubectl.exe cp .\LocalSettings.php wiki-69cccdfddd-xgf7k:/var/www/html/LocalSettings.php

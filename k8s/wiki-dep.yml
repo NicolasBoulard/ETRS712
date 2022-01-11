@@ -29,4 +29,12 @@ spec:
           requests:
             memory: "200Mi"
             cpu: "0.3"
+      #   volumeMounts:
+      #     - name: mediawiki-localsettings
+      #       mountPath: /var/www/html/LocalSettings.php
+      # volumes:
+      #   - name: mediawiki-localsettings
+      #     hostPath:
+      #       path: /Users/Nicolas/Documents/k8s/ETRS712/LocalSettings.php
+      #       type: File
 

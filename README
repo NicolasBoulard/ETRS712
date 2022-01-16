@@ -1,1 +1,7 @@
-kubectl.exe cp .\LocalSettings.php wiki-69cccdfddd-xgf7k:/var/www/html/LocalSettings.php
+minikube mount ./db/:/mysql/db/
+
+kubectl cp LocalSettings.php wiki-69cccdfddd-t5vtl:/var/www/html/LocalSettings.php
+ou
+kubectl cp LocalSettings.php $(kubectl get pods | grep "wiki" | cut -c1-21):/var/www/html
+
+kubectl exec -it $(kubectl get pods | grep "mysql" | cut -c1-23) -- mysql -u root -pMySuP3RP4SSW00rD < db1/db.sql

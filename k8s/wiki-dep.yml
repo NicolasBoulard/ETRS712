@@ -34,7 +34,6 @@ spec:
       #       mountPath: /var/www/html/LocalSettings.php
       # volumes:
       #   - name: mediawiki-localsettings
-      #     hostPath:
-      #       path: /Users/Nicolas/Documents/k8s/ETRS712/LocalSettings.php
-      #       type: File
+      #     configMap:
+      #       name: wiki-settings-config
 
